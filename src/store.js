@@ -1,9 +1,10 @@
 import {createStore,combineReducers} from 'redux'
 import counter from './state/counter'
-
+import todo from './state/todo'
 
 const reducer=combineReducers({
-    counter
+    counter,
+    todo
 });
 
 export const store = createStore(
