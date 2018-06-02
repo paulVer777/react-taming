@@ -1,12 +1,25 @@
-import {createStore,combineReducers} from 'redux'
+import {createStore,combineReducers,compose,applyMiddleware} from 'redux'
 import counter from './state/counter'
-import todo from './state/todo'
+import todo,{initTodoSync} from './state/todo'
+import customers,{fetchCustomers} from './state/customers'
+import thunk from 'redux-thunk'
+
 
 const reducer=combineReducers({
     counter,
-    todo
+    todo,
+    customers
 });
+
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
     reducer,
+    composeEnhancers(
+        applyMiddleware(thunk))
 );
+
+store.dispatch(fetchCustomers());
+store.dispatch(initTodoSync());
+

@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import {store} from './store'
 import {Provider} from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 ReactDOM.render(
+
+    <MuiThemeProvider>
     <Provider store={store}>
     <App />
-    </Provider>,
+    </Provider>
+    </MuiThemeProvider>,
     document.getElementById('root'));
