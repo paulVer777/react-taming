@@ -1,11 +1,8 @@
 import {database} from "../firebase";
 
-const DEL = 'todo/DEL';
 const ADD = 'todo/ADD';
 const ADDTXT = 'todos/ADDTXT';
 
-
-export const del = (index) => ({type: DEL, index});
 export const add = (tasks) => ({type: ADD, tasks});
 export const addtxt = (text) => ({type: ADDTXT, text});
 
@@ -25,6 +22,11 @@ export const mapObjectToArray = (obj) => (
                 {key, value}
         ))
 )
+
+export const del = (key) => (dispatch, getState) => {
+    alert(typeof (key))
+    database.ref(`/tasks/${key}`).remove()
+}
 
 export const send = () => (dispatch, getState) => {
     const state = getState()
@@ -46,12 +48,6 @@ export const initTodoSync = () => (dispatch, getState) => {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case DEL:
-            return {
-                ...state,
-                tasks: state.tasks.filter((value, index) => action.index !== index
-                )
-            };
         case ADDTXT:
             return {
                 ...state,

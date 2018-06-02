@@ -17,13 +17,15 @@ const ToDo = (props) => (
         >Add task</RaisedButton>
         <ul>
             {
-                props.tasks===null ?
+                props.tasks ?
 
-                    "Your tasks list is empty"
-                    :
-                    props.tasks.map((value, index) =>
-                        <li onClick={() => props.deletetask(index)} key={index}>{value.description}</li>
+
+
+                    props.tasks.map((value) =>
+                        <li onClick={() => props.deletetask(value.key)}>{value.description}</li>
                 )
+                :
+                "Your tasks list is empty"
             }
         </ul>
     </div>
@@ -32,7 +34,7 @@ const mapStateToProps = (state) => ({
     tasks: state.todo.tasks
 });
 const mapDispatchToProps = (dispatch) => ({
-    deletetask: (index) => dispatch(del(index)),
+    deletetask: (value) => dispatch(del(value)),
     addLetter: (event, text) => dispatch(addtxt(text)),
     addTask: () => dispatch(send()),
 
