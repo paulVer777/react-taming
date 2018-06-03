@@ -18,9 +18,6 @@ const ToDo = (props) => (
         <ul>
             {
                 props.tasks ?
-
-
-
                     props.tasks.map((value) =>
                         <li onClick={() => props.deletetask(value.key)}>{value.description}</li>
                 )

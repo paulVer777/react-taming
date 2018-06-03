@@ -25,7 +25,7 @@ export const mapObjectToArray = (obj) => (
 
 export const del = (key) => (dispatch, getState) => {
     alert(typeof (key))
-    database.ref(`/tasks/${key}`).remove()
+    database.ref('/tasks/'+key).remove()
 }
 
 export const send = () => (dispatch, getState) => {
@@ -44,8 +44,6 @@ export const initTodoSync = () => (dispatch, getState) => {
 
     )
 }
-
-
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADDTXT:
